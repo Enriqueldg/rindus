@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^create', views.create),
     url(r'^edit/(?P<client_id>[0-9]+)', views.edit),
     url(r'^update/(?P<client_id>[0-9]+)', views.update),
+    url(r'^delete/(?P<client_id>[0-9]+)', views.delete),
 ]

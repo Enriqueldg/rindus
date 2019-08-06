@@ -36,3 +36,9 @@ def update(request, client_id):
         form.save()
         return redirect("/main")
     return render(request, 'edit.html', {'client': client})
+
+
+def delete(request, client_id):
+    client = get_object_or_404(Client, id=client_id)
+    client.delete()
+    return redirect("/main")
