@@ -3,4 +3,9 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-# Create your views here.
+from client_management.models import Client
+
+
+def main(request):
+    clients = Client.objects.all()
+    return render(request, "main.html", {'clients': clients})
