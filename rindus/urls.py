@@ -13,8 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.views import logout
 
 from client_management import views
 
@@ -27,4 +29,6 @@ urlpatterns = [
     url(r'^edit/(?P<client_id>[0-9]+)', views.edit),
     url(r'^update/(?P<client_id>[0-9]+)', views.update),
     url(r'^delete/(?P<client_id>[0-9]+)', views.delete),
+    url('', include('social_django.urls', namespace='social')),
+    url('logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
 ]
