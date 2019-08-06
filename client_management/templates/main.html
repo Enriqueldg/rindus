@@ -36,8 +36,10 @@
         <td>{{ client.iban }}</td>
         <td>{{ client.created_by}}</td>
         <td>
-            <a class="btn btn-warning" href="/edit/{{ client.id }}">Edit</a>
-            <a class="btn btn-danger" href="/delete/{{ client.id }}">Delete</a>
+            {% if user.email == client.created_by %}
+                <a class="btn btn-warning" href="/edit/{{ client.id }}">Edit</a>
+                <a class="btn btn-danger" href="/delete/{{ client.id }}">Delete</a>
+            {% endif %}
         </td>
     </tr>
 {% endfor %}
@@ -45,6 +47,8 @@
 </table>
 <br>
 <br>
+{% if user.is_authenticated %}
 <center><a href="/add" class="btn btn-primary">Add New Client</a></center>
+{% endif %}
 </body>
 </html>
